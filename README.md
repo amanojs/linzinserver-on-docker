@@ -1,0 +1,2 @@
+# linzinserver-on-docker
+リンジンのAPIサーバーとDBサーバー
