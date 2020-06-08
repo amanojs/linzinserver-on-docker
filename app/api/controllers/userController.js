@@ -24,7 +24,11 @@ exports.allUser = function (req, res) {
 exports.addUser = function (req, res) {
   const today = new Date();
   const date =
-    today.getFullYear() + "/" + (today.getMonth() + 1) + "/" + today.getDate();
+    today.getFullYear() +
+    "/" +
+    (today.getMonth() + 1) +
+    "/" +
+    (today.getDate() + 1);
   console.log(req.body);
   const email = req.body.email,
     pass = req.body.pass,
