@@ -22,12 +22,15 @@ exports.allUser = function (req, res) {
 };
 
 exports.addUser = function (req, res) {
+  const today = new Date();
+  const date =
+    today.getFullYear() + "/" + (today.getMonth() + 1) + "/" + today.getDate();
   console.log(req.body);
   const email = req.body.email,
     pass = req.body.pass,
     card_url = req.body.card_url;
-  const sql = "INSERT INTO userlist VALUES(?,?,?);";
-  connection.query(sql, [email, pass, card_url], (err, result) => {
+  const sql = "INSERT INTO userlist VALUES(?,?,?,?);";
+  connection.query(sql, [email, pass, card_url, date], (err, result) => {
     if (err) throw error;
     return res.status(200).send(true);
   });
