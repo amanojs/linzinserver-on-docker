@@ -1,11 +1,5 @@
-const mysql = require("mysql");
-const config = {
-  host: "mysql",
-  user: "root",
-  password: "password",
-  database: "linzin",
-};
-const connection = mysql.createConnection(config);
+const connection = require('../mysql.js')
+
 connection.connect(function (err) {
   if (err) {
     console.error("error connecting: " + err.stack);
@@ -13,7 +7,8 @@ connection.connect(function (err) {
   }
   console.log("connected as id " + connection.threadId);
 });
-exports.allUser = function (req, res) {
+
+exports.allUser = (req, res) => {
   let sql = "SELECT * FROM userlist;";
   connection.query(sql, (err, result, fields) => {
     if (err) throw err;
@@ -21,7 +16,7 @@ exports.allUser = function (req, res) {
   });
 };
 
-exports.addUser = function (req, res) {
+exports.addUser = (req, res) => {
   const today = new Date();
   const date =
     today.getFullYear() +
@@ -39,3 +34,12 @@ exports.addUser = function (req, res) {
     return res.status(200).send(true);
   });
 };
+
+/*
+  create table userlist(
+    email VARCHAR(256) PRIMARY KEY NOT NULL,
+    pass VARCHAR(256) NOT NULL,
+    idcard VARCHAR(256) NOT NULL,
+    created_at DATE NOT NULL
+  );
+*/
