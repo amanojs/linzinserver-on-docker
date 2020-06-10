@@ -6,7 +6,9 @@ module.exports = function (app) {
   app.route("/users/:email").get(userList.existUser);
 
   app
-    .route("/awaitng")
+    .route("/awaiting")
     .get(awaitingList.allAwaiting)
     .post(awaitingList.addAwaiting);
+
+  app.route("awaiting/auth").post(awaitingList.authUser);
 };
