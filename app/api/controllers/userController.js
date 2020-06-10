@@ -21,8 +21,8 @@ exports.existUser = (req, res) => {
   let sql = "SELECT * FROM userlist WHERE email=?;";
   connection.query(sql, email, (err, result) => {
     if (err) throw err;
-    if (result.length == 0) return res.status(200).send(false);
-    return res.status(200).send(true);
+    if (result.length == 0) return res.status(200).send(true);
+    return res.send(false);
   });
 };
 
