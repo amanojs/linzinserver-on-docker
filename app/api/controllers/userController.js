@@ -1,4 +1,4 @@
-const connection = require('../mysql.js')
+const connection = require("../mysql.js");
 
 connection.connect(function (err) {
   if (err) {
@@ -13,6 +13,16 @@ exports.allUser = (req, res) => {
   connection.query(sql, (err, result, fields) => {
     if (err) throw err;
     return res.json(result);
+  });
+};
+
+exports.existUser = (req, res) => {
+  const email = req.params.email;
+  let sql = "SELECT * FROM userlist WHERE email=?;";
+  connection.query(sql, email, (err, result) => {
+    if (err) throw err;
+    if (result.length == 0) return res.status(200).send(false);
+    return res.status(200).send(true);
   });
 };
 
