@@ -52,4 +52,10 @@ exports.addUser = (req, res) => {
     idcard VARCHAR(256) NOT NULL,
     created_at DATE NOT NULL
   );
+
+  create table admin(
+    id CHAR(16) PRIMARY KEY NOT NULL,
+    pass VARCHAR(256) NOT NULL,
+    level INT(1) NOT NULL
+  );
 */
