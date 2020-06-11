@@ -4,11 +4,14 @@ module.exports = function (app) {
 
   app.route("/users").get(userList.allUser).post(userList.addUser);
   app.route("/users/:email").get(userList.existUser);
+  app.route("/login").post(userList.login)
 
   app
     .route("/awaiting")
     .get(awaitingList.allAwaiting)
     .post(awaitingList.addAwaiting);
 
-  app.route("awaiting/auth").post(awaitingList.authUser);
+  app.route("/awaiting/auth").post(awaitingList.authUser);
+
+  app.route("/admin/login").post(userList.loginAdmin)
 };

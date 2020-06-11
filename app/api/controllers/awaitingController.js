@@ -34,7 +34,7 @@ exports.authUser = (req, res) => {
   const email = req.body.email,
     pass = req.body.pass,
     idcard = req.body.card_url;
-  const sql = "DELETE email=? FROM awaiting;";
+  const sql = "DELETE FROM awaiting WHERE email=?;";
   connection.query(sql, email, (err, result) => {
     if (err) throw err;
     axios
