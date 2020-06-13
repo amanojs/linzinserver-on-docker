@@ -72,6 +72,26 @@ exports.login = (req, res) => {
   })
 }
 
+exports.logout = (req, res) => {
+  const key = req.body.key
+  console.log('delkey:', key)
+  client.del(key, (err, result) => {
+    if (err) throw err
+    return res.send(result)
+  })
+}
+
+exports.checkPartner = (req, res) => {
+  console.log('key:', req.body.key)
+  const key = req.body.key
+  client.get(key, (err, result) => {
+    if (err) throw err
+    console.log(result)
+    if (result) return res.send(result)
+    return res.send(false)
+  })
+}
+
 exports.loginAdmin = (req, res) => {
   const id = req.body.id,
     pass = req.body.pass;

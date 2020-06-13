@@ -5,6 +5,8 @@ module.exports = function (app) {
   app.route("/users").get(userList.allUser).post(userList.addUser);
   app.route("/users/:email").get(userList.existUser);
   app.route("/login").post(userList.login)
+  app.route("/logout").post(userList.logout)
+  app.route("/checkPartner").post(userList.checkPartner)
 
   app
     .route("/awaiting")
