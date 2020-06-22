@@ -19,6 +19,8 @@ services:
       context: .
       dockerfile: ./mysql/Dockerfile
     restart: always
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: user
