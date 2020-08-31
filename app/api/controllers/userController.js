@@ -1,22 +1,14 @@
-const connection = require("../mysql.js");
+const connection = require("../config/mysql.js");
 const redis = require("redis")
-const client = redis.createClient(6379, 'redis')
+//const client = redis.createClient(6379, 'redis')
 
-client.on('connect', () => {
+/* client.on('connect', () => {
   console.log('Redisに接続しました');
-});
+}); */
 
-client.on('error', (err) => {
+/* client.on('error', (err) => {
   console.log('Redisの接続でエラーが発生しました：' + err);
-});
-
-connection.connect(function (err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-    return;
-  }
-  console.log("connected as id " + connection.threadId);
-});
+}); */
 
 exports.allUser = (req, res) => {
   let sql = "SELECT * FROM userlist;";
@@ -64,7 +56,7 @@ exports.login = (req, res) => {
     if (result.length > 0) {
       //ログイン完了処理
       const key = require('crypto').randomBytes(8).toString('hex')
-      client.set(key, email)
+      // client.set(key, email)
       return res.status(200).send(key)
     } else {
       return res.status(200).send(false)
@@ -75,21 +67,21 @@ exports.login = (req, res) => {
 exports.logout = (req, res) => {
   const key = req.body.key
   console.log('delkey:', key)
-  client.del(key, (err, result) => {
+  /* client.del(key, (err, result) => {
     if (err) throw err
     return res.send(result)
-  })
+  }) */
 }
 
 exports.checkPartner = (req, res) => {
   console.log('key:', req.body.key)
   const key = req.body.key
-  client.get(key, (err, result) => {
+  /* client.get(key, (err, result) => {
     if (err) throw err
     console.log(result)
     if (result) return res.send(result)
     return res.send(false)
-  })
+  }) */
 }
 
 exports.loginAdmin = (req, res) => {
